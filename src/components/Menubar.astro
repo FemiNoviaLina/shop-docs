@@ -1,0 +1,31 @@
+---
+interface MenuSelection {
+    name: string;
+    icon: string;
+}
+
+interface Props {
+    menuSelection: MenuSelection[];
+}
+
+const { menuSelection } = Astro.props;
+---
+
+<div
+    class="z-40 bg-gray-100 fixed bottom-px left-px m-2 p-2 flex gap-2 rounded-lg shadow-md"
+>
+    {
+        menuSelection.map((menu) => (
+            <div
+                class="bg-gray-200 hover:bg-gray-200 p-2 rounded-lg transition-colors"
+                id={menu.name}
+            >
+                <img
+                    class="w-8 h-8"
+                    src={`images/${menu.icon}`}
+                    alt={menu.name}
+                />
+            </div>
+        ))
+    }
+</div>

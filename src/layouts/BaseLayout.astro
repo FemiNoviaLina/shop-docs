@@ -2,6 +2,7 @@
 import "@fontsource/inter";
 import BaseHead from "../components/BaseHead.astro";
 import Sidebar from "../components/Sidebar.astro";
+import Menubar from "../components/Menubar.astro";
 
 interface Props {
     title?: string;
@@ -17,9 +18,24 @@ const { title } = Astro.props;
         <BaseHead title={title} />
     </head>
     <body>
-        <Sidebar />
+        <Sidebar title="Shop Documentation" icon="shop_docs_icon.png" />
+        <Sidebar
+            position="fixed top-0 right-0"
+            title="Profile"
+            icon="profile_icon.png"
+        />
         <article class="sm:mx-80">
             <slot />
         </article>
+        <Menubar
+            menuSelection={[
+                { name: "articles", icon: "shop_docs_icon.png" },
+                { name: "profile", icon: "profile_icon.png" },
+            ]}
+        />
+        <script>
+            const profileButton = document.getElementById("profile");
+            const articlesButton = document.getElementById("articles");
+        </script>
     </body>
 </html>
